@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import Counter from "./components/Counter";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<h1>리액트 스터디</h1>);
+root.render(<Counter />);
