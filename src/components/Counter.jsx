@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Buttons, StyledCounter } from "./CounterStyle";
 
 export default function Counter() {
   const [number, setNubmer] = useState(0);
@@ -14,14 +15,16 @@ export default function Counter() {
   };
 
   return (
-    <>
-      <div>{number}</div>
-      <button type="button" onClick={handlePlus}>
-        +1
-      </button>
-      <button type="button" onClick={handleMinus}>
-        -1
-      </button>
-    </>
+    <StyledCounter>
+      <div className="count">{number}</div>
+      <Buttons>
+        <button type="button" onClick={handleMinus}>
+          -
+        </button>
+        <button type="button" onClick={handlePlus}>
+          +
+        </button>
+      </Buttons>
+    </StyledCounter>
   );
 }
