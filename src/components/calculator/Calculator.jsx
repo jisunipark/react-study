@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 
@@ -13,33 +14,44 @@ const Calculated = styled.div`
 `;
 
 export default function Calculator() {
+  const [number, setNumber] = useState(0);
+
+  const handleNumberClick = (e) => {
+    const nextNum = e.target.textContent;
+    setNumber(nextNum);
+  };
+
+  const handleResetClick = () => {
+    setNumber(0);
+  };
+
   return (
     <Container>
-      <Calculated>8</Calculated>
+      <Calculated>{number}</Calculated>
       <div>
-        <Button>AC</Button>
+        <Button onClick={handleResetClick}>AC</Button>
         <Button>/</Button>
       </div>
       <div>
-        <Button>7</Button>
-        <Button>8</Button>
-        <Button>9</Button>
+        <Button onClick={handleNumberClick}>8</Button>
+        <Button onClick={handleNumberClick}>7</Button>
+        <Button onClick={handleNumberClick}>9</Button>
         <Button>x</Button>
       </div>
       <div>
-        <Button>4</Button>
-        <Button>5</Button>
-        <Button>6</Button>
+        <Button onClick={handleNumberClick}>4</Button>
+        <Button onClick={handleNumberClick}>5</Button>
+        <Button onClick={handleNumberClick}>6</Button>
         <Button>-</Button>
       </div>
       <div>
-        <Button>1</Button>
-        <Button>2</Button>
-        <Button>3</Button>
+        <Button onClick={handleNumberClick}>1</Button>
+        <Button onClick={handleNumberClick}>2</Button>
+        <Button onClick={handleNumberClick}>3</Button>
         <Button>+</Button>
       </div>
       <div>
-        <Button>0</Button>
+        <Button onClick={handleNumberClick}>0</Button>
         <Button>=</Button>
       </div>
     </Container>
