@@ -17,46 +17,56 @@ export default function Calculator() {
   const [number, setNumber] = useState(0);
   const [hold, setHold] = useState();
   const [operator, setOperator] = useState("");
+  const [result, setResult] = useState();
+  const [isShown, setIsShown] = useState(false);
 
+  // 3 + 9 + 12 = 24
   const handleNumberClick = (e) => {
     const nextNum = Number(e.target.textContent);
+    setNumber(nextNum);
     if (hold) {
       switch (operator) {
         case "+":
-          setNumber(hold + nextNum);
+          setHold(hold + nextNum);
           break;
         case "-":
-          setNumber(hold - nextNum);
+          setHold(hold - nextNum);
           break;
         case "x":
-          setNumber(hold * nextNum);
+          setHold(hold * nextNum);
           break;
         case "/":
-          setNumber(hold / nextNum);
+          setHold(hold / nextNum);
           break;
         default:
           break;
       }
     } else {
-      setNumber(nextNum);
+      setHold(nextNum);
     }
   };
 
   const handleOperatorClick = (e) => {
-    setHold(number);
     setOperator(e.target.textContent);
+  };
+
+  const handleEqualClick = () => {
+    setResult(hold);
+    setIsShown(true);
   };
 
   const handleResetClick = () => {
     setNumber(0);
     setHold();
     setOperator("");
+    setResult(0);
+    setIsShown(false);
   };
 
   return (
     <>
       <Container>
-        <Calculated>{number}</Calculated>
+        <Calculated>{isShown ? result : number}</Calculated>
         <div>
           <Button onClick={handleResetClick}>AC</Button>
           <Button onClick={handleOperatorClick}>/</Button>
@@ -81,11 +91,12 @@ export default function Calculator() {
         </div>
         <div>
           <Button onClick={handleNumberClick}>0</Button>
-          <Button onClick={handleOperatorClick}>=</Button>
+          <Button onClick={handleEqualClick}>=</Button>
         </div>
         <p>---------------</p>
         <p>hold: {hold}</p>
         <p>operator: {operator}</p>
+        <p>result: {result}</p>
       </Container>
     </>
   );
