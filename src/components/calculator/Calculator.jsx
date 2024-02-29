@@ -14,16 +14,21 @@ const Calculated = styled.div`
 `;
 
 export default function Calculator() {
-  const [number, setNumber] = useState(0);
-  const [hold, setHold] = useState();
+  const [number, setNumber] = useState([]);
+  const [hold, setHold] = useState(0);
   const [operator, setOperator] = useState("");
-  const [result, setResult] = useState();
-  const [isShown, setIsShown] = useState(false);
+  const [calculation, setCalculation] = useState([]);
+  const [result, setResult] = useState(0);
 
   // 3 + 9 + 12 = 24
   const handleNumberClick = (e) => {
     const nextNum = Number(e.target.textContent);
-    setNumber(nextNum);
+    if (result) setResult(0);
+    setNumber([...number, nextNum]);
+    if (calculation.includes("=")) {
+      setCalculation([nextNum]);
+    } else setCalculation([...calculation, nextNum]);
+
     if (hold) {
       switch (operator) {
         case "+":
@@ -47,26 +52,29 @@ export default function Calculator() {
   };
 
   const handleOperatorClick = (e) => {
-    setOperator(e.target.textContent);
+    const nextOperator = e.target.textContent;
+    setOperator(nextOperator);
+    setCalculation([...calculation, nextOperator]);
   };
 
   const handleEqualClick = () => {
     setResult(hold);
-    setIsShown(true);
+    setCalculation([]);
+    setHold(0);
   };
 
   const handleResetClick = () => {
-    setNumber(0);
-    setHold();
+    setNumber([]);
+    setHold(0);
     setOperator("");
+    setCalculation([]);
     setResult(0);
-    setIsShown(false);
   };
 
   return (
     <>
       <Container>
-        <Calculated>{isShown ? result : number}</Calculated>
+        <Calculated>{result ? result : `${calculation.join(" ")}`}</Calculated>
         <div>
           <Button onClick={handleResetClick}>AC</Button>
           <Button onClick={handleOperatorClick}>/</Button>
@@ -96,7 +104,6 @@ export default function Calculator() {
         <p>---------------</p>
         <p>hold: {hold}</p>
         <p>operator: {operator}</p>
-        <p>result: {result}</p>
       </Container>
     </>
   );
