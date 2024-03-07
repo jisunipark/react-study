@@ -1,6 +1,6 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Button from "./Button";
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Button from './Button';
 
 const Container = styled.div`
   border: 1px solid black;
@@ -14,67 +14,69 @@ const Calculated = styled.div`
 `;
 
 export default function Calculator() {
-  const [number, setNumber] = useState([]);
+  const [number, setNumber] = useState(0);
   const [hold, setHold] = useState(0);
-  const [operator, setOperator] = useState("");
+  const [operator, setOperator] = useState('');
   const [calculation, setCalculation] = useState([]);
   const [result, setResult] = useState(0);
 
-  // 3 + 9 + 12 = 24
   const handleNumberClick = (e) => {
-    const nextNum = Number(e.target.textContent);
+    const numInput = e.target.textContent;
+    const nextNum = operator ? Number(numInput) : Number(String(number) + numInput);
+    setNumber(nextNum);
     if (result) setResult(0);
-    setNumber([...number, nextNum]);
-    if (calculation.includes("=")) {
-      setCalculation([nextNum]);
-    } else setCalculation([...calculation, nextNum]);
-
-    if (hold) {
-      switch (operator) {
-        case "+":
-          setHold(hold + nextNum);
-          break;
-        case "-":
-          setHold(hold - nextNum);
-          break;
-        case "x":
-          setHold(hold * nextNum);
-          break;
-        case "/":
-          setHold(hold / nextNum);
-          break;
-        default:
-          break;
-      }
-    } else {
-      setHold(nextNum);
-    }
   };
 
   const handleOperatorClick = (e) => {
     const nextOperator = e.target.textContent;
     setOperator(nextOperator);
+    setHold(number);
+    setNumber(0);
     setCalculation([...calculation, nextOperator]);
   };
 
   const handleEqualClick = () => {
     setResult(hold);
     setCalculation([]);
-    setHold(0);
   };
 
   const handleResetClick = () => {
-    setNumber([]);
+    setNumber(0);
     setHold(0);
-    setOperator("");
+    setOperator('');
     setCalculation([]);
     setResult(0);
   };
 
+  useEffect(() => {
+    if (calculation.includes('=')) {
+      setCalculation([number]);
+    } else setCalculation([number]);
+
+    if (hold) {
+      switch (operator) {
+        case '+':
+          setHold(hold + number);
+          break;
+        case '-':
+          setHold(hold - number);
+          break;
+        case 'x':
+          setHold(hold * number);
+          break;
+        case '/':
+          setHold(hold / number);
+          break;
+        default:
+          break;
+      }
+    }
+  }, [number]);
+
   return (
     <>
       <Container>
-        <Calculated>{result ? result : `${calculation.join(" ")}`}</Calculated>
+        <Calculated>{result ? result : `${calculation.join(' ')}`}</Calculated>
         <div>
           <Button onClick={handleResetClick}>AC</Button>
           <Button onClick={handleOperatorClick}>/</Button>
@@ -101,9 +103,6 @@ export default function Calculator() {
           <Button onClick={handleNumberClick}>0</Button>
           <Button onClick={handleEqualClick}>=</Button>
         </div>
-        <p>---------------</p>
-        <p>hold: {hold}</p>
-        <p>operator: {operator}</p>
       </Container>
     </>
   );
