@@ -49,4 +49,9 @@ export const StyledItem = styled.div`
     font-family: Roboto;
     font-size: 24px;
   }
+
+  button {
+    width: 20px;
+    height: 20px;
+  }
 `;

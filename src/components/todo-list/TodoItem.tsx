@@ -1,12 +1,19 @@
+import { ReactNode } from 'react';
 import CircleIcon from '../../assets/CircleIcon';
 import { StyledItem } from './TodoListStyle';
+import DeleteIcon from '../../assets/DeleteIcon';
 
-export default function TodoItem() {
+interface TodoItemProps {
+  children: ReactNode;
+  isDeleteMode: boolean;
+}
+
+export default function TodoItem({ children, isDeleteMode }: TodoItemProps) {
   return (
     <>
       <StyledItem>
-        <CircleIcon />
-        <span>Do a very important task</span>
+        <button type="button">{isDeleteMode ? <DeleteIcon /> : <CircleIcon />}</button>
+        <span>{children}</span>
       </StyledItem>
       <hr />
     </>
