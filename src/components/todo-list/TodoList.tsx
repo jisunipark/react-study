@@ -10,6 +10,7 @@ export default function TodoList() {
 
   const handleTranshcanClick = () => {
     setIsDeleteMode(!isDeleteMode);
+    setDeleteCount(0);
   };
 
   return (
@@ -26,7 +27,7 @@ export default function TodoList() {
       </div>
       <div className="todo-list">
         {todoListData.map((todo, idx) => (
-          <TodoItem key={idx} isDeleteMode={isDeleteMode}>
+          <TodoItem key={idx} isDeleteMode={isDeleteMode} setDeleteCount={setDeleteCount}>
             {todo}
           </TodoItem>
         ))}

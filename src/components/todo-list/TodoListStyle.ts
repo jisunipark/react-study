@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface StyledItemProps {
+  $isDeleteMode: boolean;
+  $isDeleted: boolean;
+}
+
 export const StyledContainer = styled.div`
   width: 800px;
   height: 868px;
@@ -30,7 +35,7 @@ export const StyledContainer = styled.div`
     align-items: flex-start;
     gap: 24px;
 
-    hr {
+    .separating-line {
       width: 656px;
       height: 1.2px;
       background: #f1f1f1;
@@ -38,14 +43,17 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const StyledItem = styled.div`
+export const StyledItem = styled.div<StyledItemProps>`
+  position: relative;
+  cursor: ${(props) => props.$isDeleteMode && 'pointer'};
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
+  width: fit-content;
 
   span {
-    color: #252525;
+    color: ${(props) => (props.$isDeleted ? '#BBBBBB' : '#252525')};
     font-family: Roboto;
     font-size: 24px;
   }
@@ -53,5 +61,13 @@ export const StyledItem = styled.div`
   button {
     width: 20px;
     height: 20px;
+  }
+
+  .deleting-line {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 2.5px;
+    background-color: #252525;
   }
 `;
