@@ -10,7 +10,13 @@ interface TodoItemProps {
 }
 
 export default function TodoItem({ children, isDeleteMode, setDeleteCount }: TodoItemProps) {
+  const [isChecked, setIsChecked] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+
+  const handleCheckClick = () => {
+    if (isDeleteMode) return;
+    setIsChecked(!isChecked);
+  };
 
   const handleDeleteClick = () => {
     if (!isDeleteMode) return;
@@ -26,7 +32,9 @@ export default function TodoItem({ children, isDeleteMode, setDeleteCount }: Tod
   return (
     <>
       <StyledItem onClick={handleDeleteClick} $isDeleteMode={isDeleteMode} $isDeleted={isDeleted}>
-        <button type="button">{isDeleteMode ? <DeleteIcon /> : <CircleIcon />}</button>
+        <button type="button" onClick={handleCheckClick}>
+          {isDeleteMode || isChecked ? <DeleteIcon /> : <CircleIcon />}
+        </button>
         <span>{children}</span>
         {isDeleted && <hr className="deleting-line" />}
       </StyledItem>
