@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface StyledItemProps {
-  $isDeleteMode: boolean;
-  $isDeleted: boolean;
+  $isDeleteMode?: boolean;
+  $isDeleted?: boolean;
 }
 
 export const StyledContainer = styled.div`
@@ -52,7 +52,16 @@ export const StyledItem = styled.div<StyledItemProps>`
   gap: 16px;
   width: fit-content;
 
-  span {
+  input::placeholder {
+    color: '#BBBBBB';
+  }
+
+  input {
+    all: unset;
+  }
+
+  span,
+  input {
     color: ${(props) => (props.$isDeleted ? '#BBBBBB' : '#252525')};
     font-family: Roboto;
     font-size: 24px;

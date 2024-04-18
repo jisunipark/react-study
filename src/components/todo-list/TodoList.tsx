@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TrashcanIcon from '../../assets/TrashcanIcon';
 import TodoItem from './TodoItem';
-import { todoListData } from './TodoListData';
 import { StyledContainer } from './TodoListStyle';
+import TodoInput from './TodoInput';
 
 export default function TodoList() {
+  const currentTodoList = localStorage.getItem('todoList');
+  const defaultTodoList: string[] = currentTodoList ? JSON.parse(currentTodoList) : [];
+
+  const [todoList, setTodoList] = useState<string[]>(defaultTodoList);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [deleteCount, setDeleteCount] = useState(0);
 
@@ -12,6 +16,10 @@ export default function TodoList() {
     setIsDeleteMode(!isDeleteMode);
     setDeleteCount(0);
   };
+
+  useEffect(() => {
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
     <StyledContainer>
@@ -26,11 +34,12 @@ export default function TodoList() {
         </button>
       </div>
       <div className="todo-list">
-        {todoListData.map((todo, idx) => (
+        {todoList.map((todo, idx) => (
           <TodoItem key={idx} isDeleteMode={isDeleteMode} setDeleteCount={setDeleteCount}>
             {todo}
           </TodoItem>
         ))}
+        <TodoInput todoList={todoList} setTodoList={setTodoList} />
       </div>
     </StyledContainer>
   );
