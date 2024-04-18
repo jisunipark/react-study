@@ -4,14 +4,14 @@ export default function DeleteIcon() {
       <path
         d="M2.35297 17.7429L17.327 2.76889"
         stroke="#252525"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <path
         d="M17.743 17.327L2.76895 2.35294"
         stroke="#252525"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
     </svg>
   );
