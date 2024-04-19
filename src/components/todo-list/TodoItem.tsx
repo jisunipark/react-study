@@ -2,31 +2,51 @@ import { ReactNode, useEffect, useState } from 'react';
 import CircleIcon from '../../assets/CircleIcon';
 import { StyledItem } from './TodoListStyle';
 import DeleteIcon from '../../assets/DeleteIcon';
+import { TDItem } from '../../types/TodoListTypes';
 
 interface TodoItemProps {
   children: ReactNode;
+  item: TDItem;
   isDeleteMode: boolean;
   setDeleteCount: (callback: (prev: number) => number) => void;
 }
 
 export default function TodoItem({ children, isDeleteMode, setDeleteCount }: TodoItemProps) {
-  const [isChecked, setIsChecked] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [todoItem, setTodoItem] = useState<TDItem>({
+    id: '',
+    content: '',
+    isChecked: false,
+    isDeleted: false,
+  });
+
+  const { isChecked, isDeleted } = todoItem;
 
   const handleCheckClick = () => {
     if (isDeleteMode) return;
-    setIsChecked(!isChecked);
+    setTodoItem((prev) => {
+      return { ...prev, isChecked: true };
+    });
   };
 
   const handleDeleteClick = () => {
     if (!isDeleteMode) return;
-    setIsDeleted(!isDeleted);
-    if (!isDeleted) setDeleteCount((prev: number) => prev + 1);
-    else setDeleteCount((prev: number) => prev - 1);
+    if (isDeleted) {
+      setTodoItem((prev) => {
+        return { ...prev, isDeleted: false };
+      });
+      setDeleteCount((prev: number) => prev - 1);
+    } else {
+      setTodoItem((prev) => {
+        return { ...prev, isDeleted: true };
+      });
+      setDeleteCount((prev: number) => prev + 1);
+    }
   };
 
   useEffect(() => {
-    setIsDeleted(false);
+    setTodoItem((prev) => {
+      return { ...prev, isDeleted: false };
+    });
   }, [isDeleteMode]);
 
   return (

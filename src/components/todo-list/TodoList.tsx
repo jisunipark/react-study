@@ -1,18 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import TrashcanIcon from '../../assets/TrashcanIcon';
 import TodoItem from './TodoItem';
 import { StyledContainer } from './TodoListStyle';
 import TodoInput from './TodoInput';
+import { TDItem, TDList } from '../../types/TodoListTypes';
 
 export default function TodoList() {
   const currentTodoList = localStorage.getItem('todoList');
-  const defaultTodoList: string[] = currentTodoList ? JSON.parse(currentTodoList) : [];
+  const defaultTodoList: TDList = currentTodoList ? JSON.parse(currentTodoList) : [];
 
-  const [todoList, setTodoList] = useState<string[]>(defaultTodoList);
+  const [todoList, setTodoList] = useState<TDList>(defaultTodoList);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [deleteCount, setDeleteCount] = useState(0);
 
-  const handleTranshcanClick = () => {
+  const [newTask, setNewTask] = useState<string>();
+  
+  const itemId = useId();
+
+  const handleSubmit = () => {
+    if (!newTask) return;
+    const nextTodoItem: TDItem = {
+      id: itemId,
+      content: newTask || '',
+      isChecked: false,
+      isDeleted: false,
+    };
+    setTodoList((prev) => [...prev, nextTodoItem]);
+  };
+
+  const handleTrashcanClick = () => {
     setIsDeleteMode(!isDeleteMode);
     setDeleteCount(0);
   };
@@ -25,7 +41,7 @@ export default function TodoList() {
     <StyledContainer>
       <div className="header">
         <h1>Todo List</h1>
-        <button type="button" onClick={handleTranshcanClick}>
+        <button type="button" onClick={handleTrashcanClick}>
           {isDeleteMode ? (
             <TrashcanIcon fill="#E9000A" deleteCount={deleteCount} />
           ) : (
@@ -35,11 +51,16 @@ export default function TodoList() {
       </div>
       <div className="todo-list">
         {todoList.map((todo, idx) => (
-          <TodoItem key={idx} isDeleteMode={isDeleteMode} setDeleteCount={setDeleteCount}>
-            {todo}
+          <TodoItem
+            key={idx}
+            item={todo}
+            isDeleteMode={isDeleteMode}
+            setDeleteCount={setDeleteCount}
+          >
+            {todo.content}
           </TodoItem>
         ))}
-        <TodoInput todoList={todoList} setTodoList={setTodoList} />
+        <TodoInput newTask={newTask || ''} setNewTask={setNewTask} onSubmit={handleSubmit} />
       </div>
     </StyledContainer>
   );
