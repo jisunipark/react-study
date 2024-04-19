@@ -1,10 +1,11 @@
 import { StyledItem } from './TodoListStyle';
 import PlusIcon from '../../assets/PlusIcon';
+import { FormEventHandler } from 'react';
 
 interface TodoInputProps {
   newTask: string;
   setNewTask: (task: string) => void;
-  onSubmit: () => void;
+  onSubmit: FormEventHandler<HTMLFormElement>;
 }
 
 export default function TodoInput({ newTask, setNewTask, onSubmit }: TodoInputProps) {

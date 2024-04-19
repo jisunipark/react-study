@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { FormEventHandler, useId, useState } from 'react';
 import TrashcanIcon from '../../assets/TrashcanIcon';
 import TodoItem from './TodoItem';
 import { StyledContainer } from './TodoListStyle';
@@ -6,18 +6,16 @@ import TodoInput from './TodoInput';
 import { TDItem, TDList } from '../../types/TodoListTypes';
 
 export default function TodoList() {
-  const currentTodoList = localStorage.getItem('todoList');
-  const defaultTodoList: TDList = currentTodoList ? JSON.parse(currentTodoList) : [];
-
-  const [todoList, setTodoList] = useState<TDList>(defaultTodoList);
+  const [todoList, setTodoList] = useState<TDList>([]);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [deleteCount, setDeleteCount] = useState(0);
 
   const [newTask, setNewTask] = useState<string>();
-  
+
   const itemId = useId();
 
-  const handleSubmit = () => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
     if (!newTask) return;
     const nextTodoItem: TDItem = {
       id: itemId,
@@ -26,16 +24,13 @@ export default function TodoList() {
       isDeleted: false,
     };
     setTodoList((prev) => [...prev, nextTodoItem]);
+    setNewTask('');
   };
 
   const handleTrashcanClick = () => {
     setIsDeleteMode(!isDeleteMode);
     setDeleteCount(0);
   };
-
-  useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-  }, [todoList]);
 
   return (
     <StyledContainer>
