@@ -4,6 +4,14 @@ import TodoItem from './TodoItem';
 import { StyledContainer } from './TodoListStyle';
 import TodoInput from './TodoInput';
 import { TDItem, TDList } from '../../types/TodoListTypes';
+import { generateId } from '../../util/createId';
+
+/* 중복 ID 생성 방지용 함수 */
+function isExistingId(list: TDList, id: number) {
+  const idList = list.map((item) => item.id);
+  const isExisting = idList.includes(id);
+  return isExisting;
+}
 
 export default function TodoList() {
   const [todoList, setTodoList] = useState<TDList>([]);
@@ -12,11 +20,14 @@ export default function TodoList() {
 
   const [newTask, setNewTask] = useState<string>();
 
-  const itemId = useId();
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    if (!newTask) return;
+
+    const itemId = generateId(4);
+    const isAvailableId = !isExistingId(todoList, itemId);
+
+    if (!newTask || !isAvailableId) return;
+
     const nextTodoItem: TDItem = {
       id: itemId,
       content: newTask || '',
@@ -30,6 +41,14 @@ export default function TodoList() {
   const handleTrashcanClick = () => {
     setIsDeleteMode(!isDeleteMode);
     setDeleteCount(0);
+    if (isDeleteMode) {
+      const newTodoList = todoList.filter((item) => {
+        console.log(item); // false로 안 바뀌는 문제
+        return item.isDeleted === false;
+      });
+      console.log('newTodoList', newTodoList);
+      setTodoList(newTodoList);
+    }
   };
 
   return (

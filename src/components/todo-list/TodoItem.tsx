@@ -11,13 +11,8 @@ interface TodoItemProps {
   setDeleteCount: (callback: (prev: number) => number) => void;
 }
 
-export default function TodoItem({ children, isDeleteMode, setDeleteCount }: TodoItemProps) {
-  const [todoItem, setTodoItem] = useState<TDItem>({
-    id: '',
-    content: '',
-    isChecked: false,
-    isDeleted: false,
-  });
+export default function TodoItem({ children, item, isDeleteMode, setDeleteCount }: TodoItemProps) {
+  const [todoItem, setTodoItem] = useState<TDItem>(item);
 
   const { isChecked, isDeleted } = todoItem;
 

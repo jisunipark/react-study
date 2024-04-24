@@ -1,5 +1,5 @@
 export interface TDItem {
-  id: string;
+  id: number;
   content: string;
   isChecked: boolean;
   isDeleted: boolean;
