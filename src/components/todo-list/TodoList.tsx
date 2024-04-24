@@ -1,4 +1,4 @@
-import { FormEventHandler, useId, useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
 import TrashcanIcon from '../../assets/TrashcanIcon';
 import TodoItem from './TodoItem';
 import { StyledContainer } from './TodoListStyle';
@@ -43,13 +43,19 @@ export default function TodoList() {
     setDeleteCount(0);
     if (isDeleteMode) {
       const newTodoList = todoList.filter((item) => {
-        console.log(item); // false로 안 바뀌는 문제
         return item.isDeleted === false;
       });
-      console.log('newTodoList', newTodoList);
       setTodoList(newTodoList);
     }
   };
+
+  useEffect(() => {
+    setTodoList((prevList: TDList) =>
+      prevList.map((item) => {
+        return { ...item, isDeleted: false };
+      })
+    );
+  }, [isDeleteMode]);
 
   return (
     <StyledContainer>
@@ -66,8 +72,10 @@ export default function TodoList() {
       <div className="todo-list">
         {todoList.map((todo, idx) => (
           <TodoItem
-            key={idx}
+            key={todo.id}
             item={todo}
+            todoList={todoList}
+            setTodoList={setTodoList}
             isDeleteMode={isDeleteMode}
             setDeleteCount={setDeleteCount}
           >

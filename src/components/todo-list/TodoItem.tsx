@@ -1,48 +1,52 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import CircleIcon from '../../assets/CircleIcon';
 import { StyledItem } from './TodoListStyle';
 import DeleteIcon from '../../assets/DeleteIcon';
-import { TDItem } from '../../types/TodoListTypes';
+import { TDItem, TDList } from '../../types/TodoListTypes';
 
 interface TodoItemProps {
   children: ReactNode;
   item: TDItem;
+  todoList: TDList;
+  setTodoList: (callback: (prev: TDList) => TDList) => void;
   isDeleteMode: boolean;
   setDeleteCount: (callback: (prev: number) => number) => void;
 }
 
-export default function TodoItem({ children, item, isDeleteMode, setDeleteCount }: TodoItemProps) {
-  const [todoItem, setTodoItem] = useState<TDItem>(item);
-
-  const { isChecked, isDeleted } = todoItem;
-
+export default function TodoItem({
+  children,
+  item,
+  todoList,
+  setTodoList,
+  isDeleteMode,
+  setDeleteCount,
+}: TodoItemProps) {
   const handleCheckClick = () => {
     if (isDeleteMode) return;
-    setTodoItem((prev) => {
-      return { ...prev, isChecked: true };
+    setTodoList((prevList) => {
+      const splitIdx = prevList.findIndex((prevItem) => prevItem.id === id);
+      return [
+        ...prevList.slice(0, splitIdx),
+        { ...prevList[splitIdx], isChecked: !isChecked },
+        ...prevList.slice(splitIdx + 1),
+      ];
     });
   };
+
+  const { id, isDeleted, isChecked } = item;
 
   const handleDeleteClick = () => {
     if (!isDeleteMode) return;
-    if (isDeleted) {
-      setTodoItem((prev) => {
-        return { ...prev, isDeleted: false };
-      });
-      setDeleteCount((prev: number) => prev - 1);
-    } else {
-      setTodoItem((prev) => {
-        return { ...prev, isDeleted: true };
-      });
-      setDeleteCount((prev: number) => prev + 1);
-    }
-  };
-
-  useEffect(() => {
-    setTodoItem((prev) => {
-      return { ...prev, isDeleted: false };
+    setTodoList((prevList) => {
+      const splitIdx = prevList.findIndex((prevItem) => prevItem.id === id);
+      return [
+        ...prevList.slice(0, splitIdx),
+        { ...prevList[splitIdx], isDeleted: !isDeleted },
+        ...prevList.slice(splitIdx + 1),
+      ];
     });
-  }, [isDeleteMode]);
+    setDeleteCount((prev: number) => prev - (isDeleted ? 1 : -1));
+  };
 
   return (
     <>
