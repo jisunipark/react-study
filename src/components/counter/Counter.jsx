@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Buttons, StyledCounter } from "./CounterStyle";
+import React, { useState } from 'react';
+import { Buttons, StyledCounter } from './CounterStyle';
 
 export default function Counter() {
   const [number, setNubmer] = useState(0);
