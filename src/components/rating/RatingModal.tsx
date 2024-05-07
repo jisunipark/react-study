@@ -1,4 +1,5 @@
 import CloseIcon from '../../assets/CloseIcon';
+import Rating from './Rating';
 import { StyledContainer } from './RatingStyle';
 
 export default function RatingModal() {
@@ -7,6 +8,7 @@ export default function RatingModal() {
       <button type="button" className="close-button">
         <CloseIcon />
       </button>
+      <Rating />
     </StyledContainer>
   );
 }

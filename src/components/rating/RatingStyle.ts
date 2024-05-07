@@ -16,3 +16,25 @@ export const StyledContainer = styled.div`
     opacity: 1;
   }
 `;
+
+export const StyledRating = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  .rating-stars {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rating-comment {
+    color: #838ca3;
+    text-align: center;
+    font-family: 'Roboto Flex';
+    font-size: 24px;
+    font-weight: 500;
+  }
+`;
