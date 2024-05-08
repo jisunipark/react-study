@@ -1,8 +1,13 @@
 import Rating from './Rating';
 import modalImg1 from '../../assets/ratingImg1.png';
 import { StyledContent1, StyledContent2, StyledContent3 } from './RatingStyle';
+import { Dispatch, SetStateAction } from 'react';
 
-export function RatingModalContent1() {
+interface RatingModalContentProps {
+  setModalPage: Dispatch<SetStateAction<number>>;
+}
+
+export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
   return (
     <StyledContent1>
       <img src={modalImg1} alt="이미지1" />
@@ -12,7 +17,7 @@ export function RatingModalContent1() {
   );
 }
 
-export function RatingModalContent2() {
+export function RatingModalContent2({ setModalPage }: RatingModalContentProps) {
   return (
     <StyledContent2>
       <Rating size="sm" />
