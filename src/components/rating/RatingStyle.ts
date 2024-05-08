@@ -107,3 +107,20 @@ export const StyledContent2 = styled.div`
     font-weight: 500;
   }
 `;
+
+export const StyledContent3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 381px;
+  height: 296px;
+
+  .heart {
+    color: #000;
+    text-align: center;
+    font-family: 'Roboto Flex';
+    font-size: 135px;
+    font-weight: 500;
+  }
+`;

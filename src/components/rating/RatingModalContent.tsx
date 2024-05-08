@@ -1,6 +1,6 @@
 import Rating from './Rating';
 import modalImg1 from '../../assets/ratingImg1.png';
-import { StyledContent1, StyledContent2 } from './RatingStyle';
+import { StyledContent1, StyledContent2, StyledContent3 } from './RatingStyle';
 
 export function RatingModalContent1() {
   return (
@@ -19,5 +19,16 @@ export function RatingModalContent2() {
       <textarea placeholder="Tell us more..." />
       <button type="button">Send</button>
     </StyledContent2>
+  );
+}
+
+export function RatingModalContent3() {
+  return (
+    <StyledContent3>
+      <span className="heart">💛</span>
+      <span className="text">
+        Thank you for your feedback! We do our best to take care of our customers
+      </span>
+    </StyledContent3>
   );
 }
