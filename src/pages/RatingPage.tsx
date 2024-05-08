@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import RatingModal from '../components/rating/RatingModal';
+import RatingModalLayout from '../components/rating/RatingModalLayout';
 
 export default function RatingPage() {
   return (
     <StyledPage>
-      <RatingModal />
+      <RatingModalLayout />
     </StyledPage>
   );
 }

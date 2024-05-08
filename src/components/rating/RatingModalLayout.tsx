@@ -1,14 +1,14 @@
 import CloseIcon from '../../assets/CloseIcon';
-import Rating from './Rating';
+import { RatingModalContent1 } from './RatingModalContent';
 import { StyledContainer } from './RatingStyle';
 
-export default function RatingModal() {
+export default function RatingModalLayout() {
   return (
     <StyledContainer>
       <button type="button" className="close-button">
         <CloseIcon />
       </button>
-      <Rating />
+      <RatingModalContent1 />
     </StyledContainer>
   );
 }

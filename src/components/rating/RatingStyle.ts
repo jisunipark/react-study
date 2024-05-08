@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 440px;
   height: 440px;
   border-radius: 40px;
@@ -14,6 +17,14 @@ export const StyledContainer = styled.div`
     top: 40px;
     right: 40px;
     opacity: 1;
+  }
+
+  .text {
+    color: #000;
+    text-align: center;
+    font-family: 'Roboto Flex';
+    font-size: 28px;
+    font-weight: 500;
   }
 `;
 
@@ -36,5 +47,19 @@ export const StyledRating = styled.div`
     font-family: 'Roboto Flex';
     font-size: 24px;
     font-weight: 500;
+  }
+`;
+
+export const StyledContent1 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 31px;
+  width: 328px;
+  height: 353px;
+
+  img {
+    margin-bottom: -11px;
   }
 `;
