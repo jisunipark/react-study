@@ -1,15 +1,19 @@
 import StarIcon from '../../assets/StarIcon';
 import { StyledRating } from './RatingStyle';
 
-export default function Rating() {
+interface RatingProps {
+  size: 'lg' | 'sm';
+}
+
+export default function Rating({ size }: RatingProps) {
   return (
-    <StyledRating>
+    <StyledRating $size={size}>
       <div className="rating-stars">
-        <StarIcon size="lg" />
-        <StarIcon size="lg" />
-        <StarIcon size="lg" />
-        <StarIcon size="lg" />
-        <StarIcon size="lg" />
+        <StarIcon size={size} />
+        <StarIcon size={size} />
+        <StarIcon size={size} />
+        <StarIcon size={size} />
+        <StarIcon size={size} />
       </div>
       <span className="rating-comment">Select an option</span>
     </StyledRating>

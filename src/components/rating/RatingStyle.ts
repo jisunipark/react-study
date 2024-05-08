@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface StyledRatingProps {
+  $size: 'lg' | 'sm';
+}
+
 export const StyledContainer = styled.div`
   position: relative;
   display: flex;
@@ -28,17 +32,17 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const StyledRating = styled.div`
+export const StyledRating = styled.div<StyledRatingProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: ${(props) => (props.$size === 'sm' ? '12px' : '20px')};
 
   .rating-stars {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: ${(props) => (props.$size === 'sm' ? '6px' : '12px')};
   }
 
   .rating-comment {
@@ -61,5 +65,45 @@ export const StyledContent1 = styled.div`
 
   img {
     margin-bottom: -11px;
+  }
+`;
+
+export const StyledContent2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 400px;
+
+  textarea {
+    display: flex;
+    width: 100%;
+    height: 181px;
+    padding: 20px;
+    border-radius: 16px;
+    background: #f2f6fb;
+    color: #000;
+    font-size: 32px;
+    font-weight: 500;
+    outline: none;
+    resize: none;
+    &::placeholder {
+      color: #8890a5;
+    }
+  }
+
+  button {
+    display: flex;
+    width: 400px;
+    padding: 20px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 16px;
+    background: #0b7fd8;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 500;
   }
 `;
