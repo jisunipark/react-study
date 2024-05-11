@@ -2,6 +2,7 @@ import StarIcon from '../../assets/StarIcon';
 import { StyledRating } from './RatingStyle';
 import { RATING_MESSAGE, STATUS_COLOR } from './constants';
 import { RatingStatus } from './type';
+import { eventStatus } from './util';
 
 interface StarProps {
   status: RatingStatus;
@@ -44,21 +45,10 @@ export default function Rating({
     <StyledRating /* $size={size} */>
       <div className="rating-stars" onMouseLeave={onMouseLeave}>
         {RATINGS.map((rating) => {
-          /* TODO 클래스 사용 시도? */
-          let status: RatingStatus = 'none';
-
-          if (currentValue === 0) {
-            if (newValue > rating) status = 'hovered';
-            else if (newValue === rating) status = 'selected';
-          } else {
-            if (newValue >= rating) status = 'selected';
-            else if (newValue > rating) status = 'hovered';
-          }
-
           return (
             <Star
               key={rating}
-              status={status}
+              status={eventStatus(currentValue, newValue, rating)}
               rating={rating}
               onSelect={onSelect}
               onHover={onHover}
