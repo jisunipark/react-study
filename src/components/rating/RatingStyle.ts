@@ -4,6 +4,10 @@ interface StyledRatingProps {
   $size?: 'lg' | 'sm' /* TODO 옵셔널 삭제 */;
 }
 
+interface StyledContent2Props {
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+}
+
 export const StyledContainer = styled.div`
   position: relative;
   display: flex;
@@ -68,7 +72,7 @@ export const StyledContent1 = styled.div`
   }
 `;
 
-export const StyledContent2 = styled.div`
+export const StyledContent2 = styled.form<StyledContent2Props>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,7 +97,7 @@ export const StyledContent2 = styled.div`
     }
   }
 
-  button {
+  .submit-button {
     display: flex;
     width: 400px;
     padding: 20px 10px;

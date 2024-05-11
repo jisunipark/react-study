@@ -7,12 +7,12 @@ interface RatingModalContentProps {
   setModalPage: Dispatch<SetStateAction<number>>;
 }
 
-/* TODO 중복 없애기? */
 export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
     setRatingValue(value);
+    setModalPage(2);
   };
 
   return (
@@ -31,11 +31,18 @@ export function RatingModalContent2({ setModalPage }: RatingModalContentProps) {
     setRatingValue(value);
   };
 
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    setModalPage(3);
+  };
+
   return (
-    <StyledContent2>
+    <StyledContent2 onSubmit={handleSubmit}>
       <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
       <textarea placeholder="Tell us more..." />
-      <button type="button">Send</button>
+      <button type="submit" className="submit-button">
+        Send
+      </button>
     </StyledContent2>
   );
 }
