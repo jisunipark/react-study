@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface StyledRatingProps {
-  $size: 'lg' | 'sm';
+  $size?: 'lg' | 'sm' /* TODO 옵셔널 삭제 */;
 }
 
 export const StyledContainer = styled.div`

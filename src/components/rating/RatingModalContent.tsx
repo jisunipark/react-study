@@ -1,7 +1,7 @@
-import Rating from './Rating';
 import modalImg1 from '../../assets/ratingImg1.png';
 import { StyledContent1, StyledContent2, StyledContent3 } from './RatingStyle';
 import { Dispatch, SetStateAction } from 'react';
+import RatingInput from './RatingInput';
 
 interface RatingModalContentProps {
   setModalPage: Dispatch<SetStateAction<number>>;
@@ -12,7 +12,7 @@ export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
     <StyledContent1>
       <img src={modalImg1} alt="이미지1" />
       <span className="text">How satisfied are you with the use of our product?</span>
-      <Rating size="lg" />
+      <RatingInput />
     </StyledContent1>
   );
 }
@@ -20,7 +20,7 @@ export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
 export function RatingModalContent2({ setModalPage }: RatingModalContentProps) {
   return (
     <StyledContent2>
-      <Rating size="sm" />
+      <RatingInput />
       <textarea placeholder="Tell us more..." />
       <button type="button">Send</button>
     </StyledContent2>
