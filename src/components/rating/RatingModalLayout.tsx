@@ -8,7 +8,12 @@ import {
 import { StyledContainer } from './RatingStyle';
 
 export default function RatingModalLayout() {
+  const [isOpen, setIsOpen] = useState(true);
   const [modalPage, setModalPage] = useState(1);
+
+  const handleCloseClick = () => {
+    setIsOpen(false);
+  };
 
   const modalContent = useMemo(() => {
     switch (modalPage) {
@@ -22,11 +27,13 @@ export default function RatingModalLayout() {
   }, [modalPage]);
 
   return (
-    <StyledContainer>
-      <button type="button" className="close-button">
-        <CloseIcon />
-      </button>
-      {modalContent}
-    </StyledContainer>
+    isOpen && (
+      <StyledContainer>
+        <button type="button" onClick={handleCloseClick} className="close-button">
+          <CloseIcon />
+        </button>
+        {modalContent}
+      </StyledContainer>
+    )
   );
 }
