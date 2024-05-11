@@ -7,6 +7,7 @@ interface RatingModalContentProps {
   setModalPage: Dispatch<SetStateAction<number>>;
 }
 
+/* TODO 중복 없애기? */
 export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
   const [ratingValue, setRatingValue] = useState(0);
 

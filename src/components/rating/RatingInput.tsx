@@ -18,7 +18,8 @@ export default function RatingInput({ name, value, onChange }: RatingInputProps)
 
   return (
     <Rating
-      value={rating}
+      currentValue={value}
+      newValue={rating}
       onSelect={handleSelect}
       onHover={setRating}
       onMouseLeave={handleMouseLeave}
