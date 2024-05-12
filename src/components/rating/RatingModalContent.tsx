@@ -1,13 +1,37 @@
 import modalImg1 from '../../assets/ratingImg1.png';
-import { StyledContent1, StyledContent2, StyledContent3 } from './RatingStyle';
+import {
+  Box,
+  StyledContent1,
+  StyledContent2,
+  StyledContent3,
+  StyledContentsGroup,
+} from './RatingStyle';
 import { Dispatch, SetStateAction, useState } from 'react';
 import RatingInput from './RatingInput';
 
-interface RatingModalContentProps {
+interface ContentsProps {
   setModalPage: Dispatch<SetStateAction<number>>;
 }
 
-export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
+export default function AllContents() {
+  const [modalPage, setModalPage] = useState(1);
+
+  return (
+    <StyledContentsGroup>
+      <Box>
+        <Content1 setModalPage={setModalPage} />
+      </Box>
+      <Box>
+        <Content2 setModalPage={setModalPage} />
+      </Box>
+      <Box>
+        <Content3 />
+      </Box>
+    </StyledContentsGroup>
+  );
+}
+
+export function Content1({ setModalPage }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
@@ -24,7 +48,7 @@ export function RatingModalContent1({ setModalPage }: RatingModalContentProps) {
   );
 }
 
-export function RatingModalContent2({ setModalPage }: RatingModalContentProps) {
+export function Content2({ setModalPage }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
@@ -47,7 +71,7 @@ export function RatingModalContent2({ setModalPage }: RatingModalContentProps) {
   );
 }
 
-export function RatingModalContent3() {
+export function Content3() {
   return (
     <StyledContent3>
       <span className="heart">💛</span>

@@ -14,13 +14,19 @@ const heartBounce = keyframes`
  }
 `;
 
-export const StyledContainer = styled.div`
-  position: relative;
+export const Box = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 440px;
   height: 440px;
+`;
+
+export const StyledContainer = styled(Box)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 40px;
   border: 0.1px solid #d7dde8;
   background: #fff;
@@ -40,6 +46,15 @@ export const StyledContainer = styled.div`
     font-size: 28px;
     font-weight: 500;
   }
+`;
+
+export const StyledContentsGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 440px;
+  height: calc(440px * 3);
 `;
 
 export const StyledRating = styled.div<StyledRatingProps>`
@@ -78,7 +93,7 @@ export const StyledContent1 = styled.div`
   }
 `;
 
-export const StyledContent2 = styled.form<StyledContent2Props>`
+export const StyledContent2 = styled(Box)<StyledContent2Props>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,7 +133,7 @@ export const StyledContent2 = styled.form<StyledContent2Props>`
   }
 `;
 
-export const StyledContent3 = styled.div`
+export const StyledContent3 = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -127,7 +142,7 @@ export const StyledContent3 = styled.div`
   height: 296px;
 
   .heart {
-    animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite;
+    /* animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite; */
     color: #000;
     text-align: center;
     font-family: 'Roboto Flex';
