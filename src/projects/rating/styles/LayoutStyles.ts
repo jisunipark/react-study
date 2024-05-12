@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface CommonLayoutProps {
+  isOpen: boolean;
+}
+
 interface StyledContentsGroupProps {
   modalPage: number;
 }
@@ -12,7 +16,7 @@ export const ContentBox = styled.div`
   height: 440px;
 `;
 
-export const CommonLayout = styled(ContentBox)`
+export const CommonLayout = styled(ContentBox)<CommonLayoutProps>`
   overflow: hidden;
   position: relative;
   display: flex;
@@ -22,6 +26,9 @@ export const CommonLayout = styled(ContentBox)`
   border: 0.1px solid #d7dde8;
   background: #fff;
   box-shadow: 0px 21px 74px 36px rgba(31, 70, 141, 0.1);
+
+  ${(props) => !props.isOpen && 'width: 330px; height: 330px; opacity: 0;'}
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
 
   .close-button {
     position: absolute;

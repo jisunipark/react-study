@@ -11,13 +11,11 @@ export default function RatingModalLayout() {
   };
 
   return (
-    isOpen && (
-      <CommonLayout>
-        <button type="button" onClick={handleCloseClick} className="close-button">
-          <CloseIcon />
-        </button>
-        <AllContents />
-      </CommonLayout>
-    )
+    <CommonLayout isOpen={isOpen}>
+      <button type="button" onClick={handleCloseClick} className="close-button">
+        <CloseIcon />
+      </button>
+      <AllContents />
+    </CommonLayout>
   );
 }
