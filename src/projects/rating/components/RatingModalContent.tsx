@@ -13,15 +13,9 @@ export default function AllContents() {
 
   return (
     <StyledContentsGroup>
-      <ContentBox>
-        <Content1 setModalPage={setModalPage} />
-      </ContentBox>
-      <ContentBox>
-        <Content2 setModalPage={setModalPage} />
-      </ContentBox>
-      <ContentBox>
-        <Content3 />
-      </ContentBox>
+      <Content1 setModalPage={setModalPage} />
+      <Content2 setModalPage={setModalPage} />
+      <Content3 />
     </StyledContentsGroup>
   );
 }
@@ -35,11 +29,13 @@ export function Content1({ setModalPage }: ContentsProps) {
   };
 
   return (
-    <StyledContent1>
-      <img src={modalImg1} alt="이미지1" />
-      <span className="text">How satisfied are you with the use of our product?</span>
-      <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
-    </StyledContent1>
+    <ContentBox>
+      <StyledContent1>
+        <img src={modalImg1} alt="이미지1" />
+        <span className="text">How satisfied are you with the use of our product?</span>
+        <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
+      </StyledContent1>
+    </ContentBox>
   );
 }
 
@@ -56,23 +52,27 @@ export function Content2({ setModalPage }: ContentsProps) {
   };
 
   return (
-    <StyledContent2 onSubmit={handleSubmit}>
-      <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
-      <textarea placeholder="Tell us more..." />
-      <button type="submit" className="submit-button">
-        Send
-      </button>
-    </StyledContent2>
+    <ContentBox>
+      <StyledContent2 onSubmit={handleSubmit}>
+        <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
+        <textarea placeholder="Tell us more..." />
+        <button type="submit" className="submit-button">
+          Send
+        </button>
+      </StyledContent2>
+    </ContentBox>
   );
 }
 
 export function Content3() {
   return (
-    <StyledContent3>
-      <span className="heart">💛</span>
-      <span className="text">
-        Thank you for your feedback! We do our best to take care of our customers
-      </span>
-    </StyledContent3>
+    <ContentBox>
+      <StyledContent3>
+        <span className="heart">💛</span>
+        <span className="text">
+          Thank you for your feedback! We do our best to take care of our customers
+        </span>
+      </StyledContent3>
+    </ContentBox>
   );
 }
