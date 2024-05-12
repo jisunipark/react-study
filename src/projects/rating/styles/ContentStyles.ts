@@ -80,6 +80,10 @@ export const StyledContent3 = styled(ContentBox)`
 
   .heart {
     animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 177px;
     color: #000;
     text-align: center;
     font-family: 'Roboto Flex';
