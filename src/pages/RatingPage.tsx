@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import RatingModalLayout from '../components/rating/RatingModalLayout';
+import RatingModalLayout from '../projects/rating/RatingModalLayout';
 
 export default function RatingPage() {
   return (
