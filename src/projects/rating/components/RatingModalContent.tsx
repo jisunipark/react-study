@@ -1,13 +1,8 @@
 import modalImg1 from '../assets/ratingImg1.png';
-import {
-  Box,
-  StyledContent1,
-  StyledContent2,
-  StyledContent3,
-  StyledContentsGroup,
-} from '../styles/RatingStyle';
 import { Dispatch, SetStateAction, useState } from 'react';
 import RatingInput from './RatingInput';
+import { ContentBox, StyledContentsGroup } from '../styles/LayoutStyles';
+import { StyledContent1, StyledContent2, StyledContent3 } from '../styles/ContentStyles';
 
 interface ContentsProps {
   setModalPage: Dispatch<SetStateAction<number>>;
@@ -18,15 +13,15 @@ export default function AllContents() {
 
   return (
     <StyledContentsGroup>
-      <Box>
+      <ContentBox>
         <Content1 setModalPage={setModalPage} />
-      </Box>
-      <Box>
+      </ContentBox>
+      <ContentBox>
         <Content2 setModalPage={setModalPage} />
-      </Box>
-      <Box>
+      </ContentBox>
+      <ContentBox>
         <Content3 />
-      </Box>
+      </ContentBox>
     </StyledContentsGroup>
   );
 }
