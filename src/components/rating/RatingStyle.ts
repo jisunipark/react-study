@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 interface StyledRatingProps {
   $size?: 'lg' | 'sm' /* TODO 옵셔널 삭제 */;
@@ -7,6 +7,12 @@ interface StyledRatingProps {
 interface StyledContent2Props {
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 }
+
+const heartBounce = keyframes`
+ 50% {
+  font-size: 124px;
+ }
+`;
 
 export const StyledContainer = styled.div`
   position: relative;
@@ -121,6 +127,7 @@ export const StyledContent3 = styled.div`
   height: 296px;
 
   .heart {
+    animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite;
     color: #000;
     text-align: center;
     font-family: 'Roboto Flex';
