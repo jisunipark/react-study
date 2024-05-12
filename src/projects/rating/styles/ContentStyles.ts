@@ -1,9 +1,13 @@
 import styled, { keyframes } from 'styled-components';
 import { ContentBox } from './LayoutStyles';
 
+interface StyledContentProps {
+  isCurrent: boolean;
+}
+
 /* Content 1 */
 
-export const StyledContent1 = styled.div`
+export const StyledContent1 = styled.div<StyledContentProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +15,8 @@ export const StyledContent1 = styled.div`
   gap: 31px;
   width: 328px;
   height: 353px;
+  opacity: ${(props) => (props.isCurrent ? '1' : '0')};
+  transition: opacity 0.8s;
 
   img {
     margin-bottom: -11px;
@@ -19,13 +25,15 @@ export const StyledContent1 = styled.div`
 
 /* Content 2 */
 
-export const StyledContent2 = styled(ContentBox)`
+export const StyledContent2 = styled(ContentBox)<StyledContentProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   width: 400px;
+  opacity: ${(props) => (props.isCurrent ? '1' : '0')};
+  transition: opacity 0.8s;
 
   textarea {
     display: flex;
@@ -70,13 +78,15 @@ const heartBounce = keyframes`
  }
 `;
 
-export const StyledContent3 = styled(ContentBox)`
+export const StyledContent3 = styled(ContentBox)<StyledContentProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   width: 381px;
   height: 296px;
+  opacity: ${(props) => (props.isCurrent ? '1' : '0')};
+  transition: opacity 0.8s;
 
   .heart {
     animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite;
