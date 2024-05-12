@@ -25,11 +25,21 @@ export const CommonLayout = styled(ContentBox)`
 
   .close-button {
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: 32px;
+    right: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    width: 42px;
+    height: 42px;
     opacity: 1;
     z-index: 1;
     background-color: transparent;
+
+    &:hover {
+      background-color: #e1e0e4;
+    }
   }
 
   .text {

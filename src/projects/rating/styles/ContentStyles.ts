@@ -52,10 +52,13 @@ export const StyledContent2 = styled(ContentBox)`
     align-items: center;
     gap: 10px;
     border-radius: 16px;
-    background: #0b7fd8;
+    background: #0b92f2;
     color: #fff;
     font-size: 32px;
     font-weight: 500;
+    &:hover {
+      background: #0b7fd8;
+    }
   }
 `;
 
