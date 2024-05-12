@@ -12,6 +12,7 @@ interface StarProps {
 }
 
 interface RatingProps {
+  size: 'sm' | 'lg';
   currentValue: number;
   newValue: number;
   onSelect: (value: number) => void;
@@ -35,6 +36,7 @@ function Star({ status = 'none', rating, onSelect, onHover }: StarProps) {
 }
 
 export default function Rating({
+  size,
   currentValue,
   newValue,
   onSelect,
@@ -42,7 +44,7 @@ export default function Rating({
   onMouseLeave,
 }: RatingProps) {
   return (
-    <StyledRating /* $size={size} */>
+    <StyledRating $size={size}>
       <div className="rating-stars" onMouseLeave={onMouseLeave}>
         {RATINGS.map((rating) => {
           return (

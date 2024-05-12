@@ -33,7 +33,7 @@ export function Content1({ setModalPage }: ContentsProps) {
       <StyledContent1>
         <img src={modalImg1} alt="이미지1" />
         <span className="text">How satisfied are you with the use of our product?</span>
-        <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
+        <RatingInput name="modal1" value={ratingValue} size="lg" onChange={handleRatingChange} />
       </StyledContent1>
     </ContentBox>
   );
@@ -54,7 +54,7 @@ export function Content2({ setModalPage }: ContentsProps) {
   return (
     <ContentBox>
       <StyledContent2>
-        <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
+        <RatingInput name="modal2" value={ratingValue} size="sm" onChange={handleRatingChange} />
         <textarea placeholder="Tell us more..." />
         <button type="submit" className="submit-button" onClick={handleSubmit}>
           Send

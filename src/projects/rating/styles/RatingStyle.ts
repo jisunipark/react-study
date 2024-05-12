@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface StyledRatingProps {
-  $size?: 'lg' | 'sm' /* TODO 옵셔널 삭제 */;
+  $size: 'lg' | 'sm';
 }
 
 export const StyledRating = styled.div<StyledRatingProps>`
