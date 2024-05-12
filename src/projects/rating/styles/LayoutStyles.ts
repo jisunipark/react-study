@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface StyledContentsGroupProps {
-  shouldMove: boolean;
+  modalPage: number;
 }
 
 export const ContentBox = styled.div`
@@ -13,7 +13,7 @@ export const ContentBox = styled.div`
 `;
 
 export const CommonLayout = styled(ContentBox)`
-  /* overflow: hidden; */
+  overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,6 +28,8 @@ export const CommonLayout = styled(ContentBox)`
     top: 40px;
     right: 40px;
     opacity: 1;
+    z-index: 1;
+    background-color: transparent;
   }
 
   .text {
@@ -48,6 +50,11 @@ export const StyledContentsGroup = styled.div<StyledContentsGroupProps>`
   width: 440px;
   height: calc(440px * 3);
 
-  transition: transform 3s;
-  transform: ${(props) => (props.shouldMove ? 'translateY(-440px)' : 'translateY(0)')};
+  transition: transform 0.8s;
+  transform: ${(props) =>
+    props.modalPage === 1
+      ? 'translateY(0)'
+      : props.modalPage === 2
+      ? 'translateY(-440px)'
+      : 'translateY(-880px)'};
 `;

@@ -1,31 +1,31 @@
 import modalImg1 from '../assets/ratingImg1.png';
-import { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction, useState } from 'react';
 import RatingInput from './RatingInput';
 import { ContentBox, StyledContentsGroup } from '../styles/LayoutStyles';
 import { StyledContent1, StyledContent2, StyledContent3 } from '../styles/ContentStyles';
 
 interface ContentsProps {
-  setShouldMove: Dispatch<SetStateAction<boolean>>;
+  setModalPage: Dispatch<SetStateAction<number>>;
 }
 
 export default function AllContents() {
-  const [shouldMove, setShouldMove] = useState(false);
+  const [modalPage, setModalPage] = useState(1);
 
   return (
-    <StyledContentsGroup shouldMove={shouldMove}>
-      <Content1 setShouldMove={setShouldMove} />
-      <Content2 setShouldMove={setShouldMove} />
+    <StyledContentsGroup modalPage={modalPage}>
+      <Content1 setModalPage={setModalPage} />
+      <Content2 setModalPage={setModalPage} />
       <Content3 />
     </StyledContentsGroup>
   );
 }
 
-export function Content1({ setShouldMove }: ContentsProps) {
+export function Content1({ setModalPage }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
     setRatingValue(value);
-    setShouldMove(true);
+    setModalPage(2);
   };
 
   return (
@@ -39,7 +39,7 @@ export function Content1({ setShouldMove }: ContentsProps) {
   );
 }
 
-export function Content2({ setShouldMove }: ContentsProps) {
+export function Content2({ setModalPage }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
@@ -48,12 +48,8 @@ export function Content2({ setShouldMove }: ContentsProps) {
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    setShouldMove(true);
+    setModalPage(3);
   };
-
-  useEffect(() => {
-    setShouldMove(false);
-  }, []);
 
   return (
     <ContentBox>

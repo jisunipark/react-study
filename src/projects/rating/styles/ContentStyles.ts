@@ -1,10 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { ContentBox } from './LayoutStyles';
 
-// interface StyledContent2Props {
-//   onSubmit: React.FormEventHandler<HTMLFormElement>;
-// }
-
 /* Content 1 */
 
 export const StyledContent1 = styled.div`
@@ -80,7 +76,7 @@ export const StyledContent3 = styled(ContentBox)`
   height: 296px;
 
   .heart {
-    /* animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite; */
+    animation: ${heartBounce} 0.7s cubic-bezier(1, 0, 0, 0.99) infinite;
     color: #000;
     text-align: center;
     font-family: 'Roboto Flex';
