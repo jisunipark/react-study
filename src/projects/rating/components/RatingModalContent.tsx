@@ -1,4 +1,4 @@
-import modalImg1 from '../../assets/ratingImg1.png';
+import modalImg1 from '../assets/ratingImg1.png';
 import {
   Box,
   StyledContent1,
