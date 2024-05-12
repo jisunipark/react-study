@@ -8,7 +8,8 @@ export const ContentBox = styled.div`
   height: 440px;
 `;
 
-export const StyledContainer = styled(ContentBox)`
+export const CommonLayout = styled(ContentBox)`
+  /* overflow: hidden; */
   position: relative;
   display: flex;
   justify-content: center;

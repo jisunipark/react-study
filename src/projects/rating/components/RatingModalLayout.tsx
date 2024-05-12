@@ -1,8 +1,7 @@
 import { useState } from 'react';
-
 import CloseIcon from '../assets/CloseIcon';
 import AllContents from './RatingModalContent';
-import { StyledContainer } from '../styles/LayoutStyles';
+import { CommonLayout } from '../styles/LayoutStyles';
 
 export default function RatingModalLayout() {
   const [isOpen, setIsOpen] = useState(true);
@@ -13,12 +12,12 @@ export default function RatingModalLayout() {
 
   return (
     isOpen && (
-      <StyledContainer>
+      <CommonLayout>
         <button type="button" onClick={handleCloseClick} className="close-button">
           <CloseIcon />
         </button>
         <AllContents />
-      </StyledContainer>
+      </CommonLayout>
     )
   );
 }
