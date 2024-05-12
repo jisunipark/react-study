@@ -1,31 +1,31 @@
 import modalImg1 from '../assets/ratingImg1.png';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction, useEffect, useState } from 'react';
 import RatingInput from './RatingInput';
 import { ContentBox, StyledContentsGroup } from '../styles/LayoutStyles';
 import { StyledContent1, StyledContent2, StyledContent3 } from '../styles/ContentStyles';
 
 interface ContentsProps {
-  setModalPage: Dispatch<SetStateAction<number>>;
+  setShouldMove: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function AllContents() {
-  const [modalPage, setModalPage] = useState(1);
+  const [shouldMove, setShouldMove] = useState(false);
 
   return (
-    <StyledContentsGroup>
-      <Content1 setModalPage={setModalPage} />
-      <Content2 setModalPage={setModalPage} />
+    <StyledContentsGroup shouldMove={shouldMove}>
+      <Content1 setShouldMove={setShouldMove} />
+      <Content2 setShouldMove={setShouldMove} />
       <Content3 />
     </StyledContentsGroup>
   );
 }
 
-export function Content1({ setModalPage }: ContentsProps) {
+export function Content1({ setShouldMove }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
     setRatingValue(value);
-    setModalPage(2);
+    setShouldMove(true);
   };
 
   return (
@@ -39,24 +39,28 @@ export function Content1({ setModalPage }: ContentsProps) {
   );
 }
 
-export function Content2({ setModalPage }: ContentsProps) {
+export function Content2({ setShouldMove }: ContentsProps) {
   const [ratingValue, setRatingValue] = useState(0);
 
   const handleRatingChange = (name: string, value: number) => {
     setRatingValue(value);
   };
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    setModalPage(3);
+    setShouldMove(true);
   };
+
+  useEffect(() => {
+    setShouldMove(false);
+  }, []);
 
   return (
     <ContentBox>
-      <StyledContent2 onSubmit={handleSubmit}>
+      <StyledContent2>
         <RatingInput name="modal1" value={ratingValue} onChange={handleRatingChange} />
         <textarea placeholder="Tell us more..." />
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button" onClick={handleSubmit}>
           Send
         </button>
       </StyledContent2>

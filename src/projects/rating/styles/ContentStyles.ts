@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components';
 import { ContentBox } from './LayoutStyles';
 
-interface StyledContent2Props {
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
-}
+// interface StyledContent2Props {
+//   onSubmit: React.FormEventHandler<HTMLFormElement>;
+// }
 
 /* Content 1 */
 
@@ -23,7 +23,7 @@ export const StyledContent1 = styled.div`
 
 /* Content 2 */
 
-export const StyledContent2 = styled(ContentBox)<StyledContent2Props>`
+export const StyledContent2 = styled(ContentBox)`
   display: flex;
   flex-direction: column;
   justify-content: center;

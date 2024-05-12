@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface StyledContentsGroupProps {
+  shouldMove: boolean;
+}
+
 export const ContentBox = styled.div`
   display: flex;
   justify-content: center;
@@ -35,11 +39,15 @@ export const CommonLayout = styled(ContentBox)`
   }
 `;
 
-export const StyledContentsGroup = styled.div`
+export const StyledContentsGroup = styled.div<StyledContentsGroupProps>`
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 440px;
   height: calc(440px * 3);
+
+  transition: transform 3s;
+  transform: ${(props) => (props.shouldMove ? 'translateY(-440px)' : 'translateY(0)')};
 `;
