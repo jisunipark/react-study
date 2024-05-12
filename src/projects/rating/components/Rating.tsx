@@ -1,8 +1,8 @@
-import StarIcon from '../../assets/StarIcon';
-import { StyledRating } from './RatingStyle';
-import { RATING_MESSAGE, STATUS_COLOR } from './constants';
-import { RatingStatus } from './type';
-import { eventStatus } from './util';
+import StarIcon from '../assets/StarIcon';
+import { StyledRating } from '../styles/RatingStyle';
+import { RATING_MESSAGE, STATUS_COLOR } from '../lib/constants';
+import { RatingStatus } from '../lib/type';
+import { eventStatus } from '../lib/util';
 
 interface StarProps {
   status: RatingStatus;

@@ -5,7 +5,7 @@ import {
   StyledContent2,
   StyledContent3,
   StyledContentsGroup,
-} from './RatingStyle';
+} from '../styles/RatingStyle';
 import { Dispatch, SetStateAction, useState } from 'react';
 import RatingInput from './RatingInput';
 

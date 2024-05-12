@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import CloseIcon from '../../assets/CloseIcon';
+import { StyledContainer } from '../styles/RatingStyle';
+import CloseIcon from '../assets/CloseIcon';
 import AllContents from './RatingModalContent';
-import { StyledContainer } from './RatingStyle';
 
 export default function RatingModalLayout() {
   const [isOpen, setIsOpen] = useState(true);
