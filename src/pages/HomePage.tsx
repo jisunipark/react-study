@@ -12,6 +12,9 @@ export default function HomePage() {
       <div>
         <Link to="/todo">Todo List</Link>
       </div>
+      <div>
+        <Link to="/rating">Rating</Link>
+      </div>
     </div>
   );
 }
