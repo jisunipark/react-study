@@ -21,8 +21,8 @@ export default function Column({ data }: ColumnProps) {
         </button>
       </div>
       <div className="cards">
-        {data.map((column) => (
-          <Card data={column} />
+        {data.map((card) => (
+          <Card key={card.id} data={card} />
         ))}
       </div>
     </StyledColumn>

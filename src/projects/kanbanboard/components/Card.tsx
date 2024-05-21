@@ -7,14 +7,21 @@ interface CardProps {
 }
 
 export default function Card({ data }: CardProps) {
-  const { status, title, tag, profileImages } = data;
+  const { id, status, title, tag, profileImages } = data;
 
   const handleMoreClick = () => {
     alert('arigato');
   };
 
+  const handleDragStart =
+    (id: string): React.DragEventHandler<HTMLDivElement> =>
+    (e) => {
+      e.dataTransfer.setData('card', String(id));
+      console.log('this is ', id);
+    };
+
   return (
-    <StyledCard>
+    <StyledCard draggable onDragStart={handleDragStart(String(id))}>
       <div className="top">
         <Badge status={status} />
         <button className="icon-button" type="button" onClick={handleMoreClick}>
@@ -58,7 +65,7 @@ function ProfileStack({ imgList }: { imgList: string[] }) {
   return (
     <div className="profile-stack">
       {imgList.map((img) => (
-        <img className="profile-img" src={img} alt={`${img} 얼굴`} />
+        <img key={img} className="profile-img" src={img} alt={`${img} 얼굴`} />
       ))}
     </div>
   );

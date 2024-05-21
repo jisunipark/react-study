@@ -26,6 +26,7 @@ export const StyledCard = styled.div`
   border: 1px solid #dee0e8;
   background: #fff;
   box-shadow: 0px 4px 14.3px 0px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
 
   .top {
     display: flex;
