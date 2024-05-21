@@ -4,24 +4,26 @@ import { Card as CardType } from '../lib/mockdata';
 
 interface CardProps {
   data: CardType;
+  setColumnData: React.Dispatch<React.SetStateAction<CardType[]>>;
 }
 
-export default function Card({ data }: CardProps) {
-  const { id, status, title, tag, profileImages } = data;
+export default function Card({ data, setColumnData }: CardProps) {
+  const { status, title, tag, profileImages } = data;
 
   const handleMoreClick = () => {
     alert('arigato');
   };
 
-  const handleDragStart =
-    (id: string): React.DragEventHandler<HTMLDivElement> =>
-    (e) => {
-      e.dataTransfer.setData('card', String(id));
-      console.log('this is ', id);
-    };
+  const handleDragStart: React.DragEventHandler<HTMLDivElement> = (e) => {
+    e.dataTransfer.setData('card', JSON.stringify(data));
+  };
+
+  const handleDragOver: React.DragEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+  };
 
   return (
-    <StyledCard draggable onDragStart={handleDragStart(String(id))}>
+    <StyledCard draggable onDragStart={handleDragStart} onDragOver={handleDragOver}>
       <div className="top">
         <Badge status={status} />
         <button className="icon-button" type="button" onClick={handleMoreClick}>

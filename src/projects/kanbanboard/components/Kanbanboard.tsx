@@ -11,8 +11,8 @@ export default function Kanbanboard() {
 
   return (
     <StyledKanbanboard>
-      <Column data={inProgressCards} />
-      <Column data={doneCards} />
+      <Column title="In Progress" data={inProgressCards} setData={setInProgressCards} />
+      <Column title="Done" data={doneCards} setData={setDoneCards} />
     </StyledKanbanboard>
   );
 }
