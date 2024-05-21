@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+interface StyledBadgeProps {
+  color: {
+    bg: string;
+    text: string;
+  };
+}
+
+interface StyledTagProps {
+  color: string;
+}
+
 export const StyledCard = styled.div`
   display: flex;
   width: 100%;
@@ -21,28 +32,6 @@ export const StyledCard = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
-    .badge {
-      display: flex;
-      padding: 4px 6px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      border-radius: 4px;
-      background: #c4f2d6;
-      color: #3ba860;
-      font-family: Roboto;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: normal;
-    }
-  }
-
-  .tag {
-    color: #9b1e27;
-    font-family: Roboto;
-    font-size: 12px;
-    line-height: normal;
   }
 
   .profile-stack {
@@ -62,4 +51,26 @@ export const StyledCard = styled.div`
       border: 1px solid #fff;
     }
   }
+`;
+
+export const StyledBadge = styled.div<StyledBadgeProps>`
+  display: flex;
+  padding: 4px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: ${(props) => props.color.bg};
+  color: ${(props) => props.color.text};
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const StyledTag = styled.span<StyledTagProps>`
+  color: ${(props) => props.color};
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: normal;
 `;
