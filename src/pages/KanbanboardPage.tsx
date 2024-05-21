@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Kanbanboard from '../projects/kanbanboard/components/Kanbanboard';
 
 export default function KanbanboardPage() {
   return (
