@@ -1,8 +1,13 @@
 import MoreIcon from '../assets/MoreIcon';
+import { Card as CardType } from '../lib/mockdata';
 import { StyledColumn } from '../styles/ColumnStyles';
 import Card from './Card';
 
-export default function Column() {
+interface ColumnProps {
+  data: CardType[];
+}
+
+export default function Column({ data }: ColumnProps) {
   const handleMoreClick = () => {
     alert('ㅋㅋ');
   };
@@ -16,9 +21,9 @@ export default function Column() {
         </button>
       </div>
       <div className="cards">
-        <Card />
-        <Card />
-        <Card />
+        {data.map((column) => (
+          <Card data={column} />
+        ))}
       </div>
     </StyledColumn>
   );

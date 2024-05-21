@@ -1,9 +1,14 @@
 import MoreIcon from '../assets/MoreIcon';
-import 홍진경 from '../assets/홍진경.png';
-import 박명수 from '../assets/박명수.png';
-import { StyledCard } from '../styles/CardStyles';
+import { StyledBadge, StyledCard, StyledTag } from '../styles/CardStyles';
+import { Card as CardType } from '../lib/mockdata';
 
-export default function Card() {
+interface CardProps {
+  data: CardType;
+}
+
+export default function Card({ data }: CardProps) {
+  const { status, title, tag, profileImages } = data;
+
   const handleMoreClick = () => {
     alert('arigato');
   };
@@ -11,31 +16,50 @@ export default function Card() {
   return (
     <StyledCard>
       <div className="top">
-        <Badge />
+        <Badge status={status} />
         <button className="icon-button" type="button" onClick={handleMoreClick}>
           <MoreIcon />
         </button>
       </div>
-      <span className="card-title">Code functionality of the app</span>
-      <Tag />
-      <ProfileStack />
+      <span className="card-title">{title}</span>
+      <Tag tag={tag} />
+      <ProfileStack imgList={profileImages} />
     </StyledCard>
   );
 }
 
-function Badge() {
-  return <div className="badge">Done</div>;
+function Badge({ status }: { status: 'In Progress' | 'Done' }) {
+  let color = {
+    bg: '',
+    text: '',
+  };
+
+  if (status === 'In Progress') {
+    color.bg = '#D8E0FB';
+    color.text = '#4B5FCB';
+  } else if (status === 'Done') {
+    color.bg = '#C4F2D6';
+    color.text = '#3BA860';
+  }
+
+  return <StyledBadge color={color}>{status}</StyledBadge>;
 }
 
-function Tag() {
-  return <span className="tag">Bug Fix</span>;
+function Tag({ tag }: { tag: 'Feature' | 'Improvement' | 'Bug Fix' }) {
+  let color = '';
+  if (tag === 'Bug Fix') color = '#9B1E27';
+  else if (tag === 'Improvement') color = '#1D1C8E';
+  else if (tag === 'Feature') color = '#47B589';
+
+  return <StyledTag color={color}>{tag}</StyledTag>;
 }
 
-function ProfileStack() {
+function ProfileStack({ imgList }: { imgList: string[] }) {
   return (
     <div className="profile-stack">
-      <img className="profile-img" src={홍진경} alt="홍진경 얼굴" />
-      <img className="profile-img" src={박명수} alt="박명수 얼굴" />
+      {imgList.map((img) => (
+        <img className="profile-img" src={img} alt={`${img} 얼굴`} />
+      ))}
     </div>
   );
 }
