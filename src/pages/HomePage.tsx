@@ -15,6 +15,9 @@ export default function HomePage() {
       <div>
         <Link to="/rating">Rating</Link>
       </div>
+      <div>
+        <Link to="/kanbanboard">Kanbanboard</Link>
+      </div>
     </div>
   );
 }
